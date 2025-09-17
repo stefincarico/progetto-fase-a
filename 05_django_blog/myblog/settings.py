@@ -104,14 +104,32 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# settings.py
 
-TIME_ZONE = 'UTC'
-
+# Impostazioni lingua e fuso orario per Italia
+LANGUAGE_CODE = 'it-it'
+TIME_ZONE = 'Europe/Rome'
 USE_I18N = True
-
 USE_TZ = True
 
+# Impostazioni formato numeri italiano
+USE_THOUSAND_SEPARATOR = True
+THOUSAND_SEPARATOR = '.'
+NUMBER_GROUPING = 3
+DECIMAL_SEPARATOR = ','
+
+# Formati data e ora italiani
+DATE_FORMAT = 'd/m/Y'
+TIME_FORMAT = 'H:i'
+DATETIME_FORMAT = 'd/m/Y H:i'
+SHORT_DATE_FORMAT = 'd/m/Y'
+SHORT_DATETIME_FORMAT = 'd/m/Y H:i'
+
+# Prima giorno della settimana (lunedì)
+FIRST_DAY_OF_WEEK = 1
+
+# Formati di localizzazione
+FORMAT_MODULE_PATH = 'myproject.formats'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
