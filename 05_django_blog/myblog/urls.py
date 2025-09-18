@@ -18,12 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    # Mettiamo gli URL di autenticazione PRIMA dell'admin per evitare collisioni di nomi come 'logout'
+    path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     # Dice a Django: "per ogni URL che inizia con 'blog/',
     # passa il resto dell'indirizzo al file 'blog.urls'".
     path('blog/', include('blog.urls')),
-
-    # Aggiungiamo questa riga per includere tutti gli URL di autenticazione
-    # (login, logout, cambio password, etc.) forniti da Django.
-    path('accounts/', include('django.contrib.auth.urls')),
 ]

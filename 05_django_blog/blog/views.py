@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from .models import Post # Importiamo il nostro modello Post!
 from django.shortcuts import redirect # Ci servirà per reindirizzare l'utente
 from django.contrib import messages # Per mostrare messaggi di successo
-from .forms import ContactForm, PostForm # Aggiungi PostForm
+from .forms import ContactForm, PostForm, UserRegisterForm
 from django.contrib.auth.decorators import login_required # Importa il decorator!
 
 from django.shortcuts import render, redirect
@@ -95,3 +95,16 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         post = self.get_object()
         return self.request.user == post.author
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save() # Salva il nuovo utente nel database!
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account creato per {username}! Ora puoi fare il login.')
+            return redirect('login') # Reindirizza alla pagina di login
+    else:
+        form = UserRegisterForm()
+    return render(request, 'blog/register.html', {'form': form})
+
