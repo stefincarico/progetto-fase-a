@@ -6,10 +6,23 @@
     <title>Il Mio Fantastico Blog</title>
 </head>
 <body>
+        {% if messages %}
+        {% for message in messages %}
+            <div class="alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
     <header>
         <nav>
             <a href="{% url 'blog-home' %}">Home</a>
+            <!-- Logica condizionale -->
+            {% if user.is_authenticated %}
+                <a href="{% url 'post-create' %}">Crea Post</a>
+            {% endif %}
             <a href="{% url 'blog-about' %}">About</a>
+            <a href="{% url 'blog-contact' %}">Contattaci</a>
+
         </nav>
     </header>
 

@@ -1,0 +1,10 @@
+    {% extends 'blog/base.html' %}
+
+    {% block content %}
+        <h2>Contattaci</h2>
+        <form method="POST">
+            {% csrf_token %} <!-- Lo scudo di sicurezza! FONDAMENTALE -->
+            {{ form.as_p }} <!-- Django renderizzerà i campi del form come paragrafi <p> -->
+            <button type="submit">Invia Messaggio</button>
+        </form>
+    {% endblock content %}
